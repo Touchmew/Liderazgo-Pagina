@@ -420,6 +420,10 @@
                 </ul>
             </nav>
         </div>
+        <div style="text-align: right; font-weight: bold; color: gold;">
+          🪙 Monedas: <span id="monedas">0</span>
+        </div>
+
     </header>
 
     <!-- Main Content -->
@@ -638,33 +642,34 @@
             </section>
         </div>
         <section class="section" id="recompensas">
-              <h2 class="section-title">🎁 Sistema de Recompensas</h2>
-              <div class="recycling-guide">
-                <p>Gana puntos reciclando correctamente. Puedes subir una foto de tu clasificación o escanear el código de barras del producto para verificarlo.</p>
+          <h2 class="section-title">🎁 Sistema de Recompensas</h2>
+          <div class="recycling-guide">
 
-                <!-- Subir Foto -->
-                <div class="mb-4">
-                  <label for="fotoBasura" class="form-label"><strong>📸 Sube una foto de tu reciclaje:</strong></label>
-                  <input class="form-control" type="file" id="fotoBasura" accept="image/*">
-                </div>
+            <!-- Subir foto -->
+            <div class="mb-3">
+              <label for="fotoReciclaje" class="form-label"><strong>📸 Sube una foto del reciclaje:</strong></label>
+              <input type="file" class="form-control" id="fotoReciclaje" accept="image/*">
+            </div>
 
-                <!-- Escanear código de barras -->
-                <div class="mb-4">
-                  <label class="form-label"><strong>📷 Escanear código de barras con cámara:</strong></label>
-                  <div id="scanner" style="width: 100%; height: 250px; border: 2px dashed #888; margin-bottom: 10px;"></div>
-                  <input type="text" class="form-control" id="codigoDetectado" placeholder="Código detectado automáticamente" readonly>
-                  <button class="btn btn-secondary mt-2" onclick="iniciarEscaner()">Iniciar escáner</button>
-                  <button class="btn btn-danger mt-2" onclick="detenerEscaner()">Detener escáner</button>
-                </div>
-
-                    <!-- Simulación de envío -->
-                <button class="btn btn-success" onclick="registrarReciclaje()">✅ Registrar acción ecológica</button>
-
-                <div id="mensajeConfirmacion" class="mt-3 text-success" style="display: none;">
-                  ¡Gracias por tu compromiso! Has ganado 10 puntos 🌱
-                </div>
+            <!-- Escáner -->
+            <div class="mb-3">
+              <label class="form-label"><strong>🔍 Escanea código de barras con cámara:</strong></label>
+              <div class="d-flex justify-content-center mb-3">
+                <div id="scanner" style="width: 320px; height: 250px; border: 2px dashed #888; border-radius: 10px;"></div>
               </div>
-            </section>
+              <input type="text" class="form-control mb-2" id="codigoDetectado" placeholder="Código detectado automáticamente" readonly>
+              
+              <div class="d-flex flex-wrap gap-2 mt-3">
+                  <button class="btn btn-secondary" onclick="iniciarEscaner()">📷 Iniciar escáner</button>
+                  <button class="btn btn-danger" onclick="detenerEscaner()">✖️ Detener escáner</button>
+                  <button class="btn btn-success" onclick="registrarAccion()">✅ Registrar acción ecológica</button>
+                </div>
+
+                <!-- Mensaje de confirmación -->
+                <div id="mensajeConfirmacion" class="mt-3 text-success fw-bold" style="display: none;">
+                  ¡Acción registrada! Has ganado 10 monedas 🪙
+                </div>
+            </div>
     </main>
 
     <!-- Footer -->
@@ -679,6 +684,30 @@
         </div>
     </footer>
     <script>
+      let monedas = 0;
+
+      function actualizarMonedas() {
+        document.getElementById("monedas").innerText = monedas;
+      }
+
+      function registrarAccion() {
+        const tieneFoto = document.getElementById("fotoReciclaje").value;
+        const codigo = document.getElementById("codigoDetectado").value;
+
+        if (tieneFoto || codigo.trim() !== "") {
+          monedas += 10;
+          actualizarMonedas();
+          document.getElementById("mensajeConfirmacion").style.display = "block";
+          setTimeout(() => {
+            document.getElementById("mensajeConfirmacion").style.display = "none";
+            document.getElementById("fotoReciclaje").value = "";
+            document.getElementById("codigoDetectado").value = "";
+          }, 3000);
+        } else {
+          alert("Debes subir una foto o escanear un código para ganar monedas.");
+        }
+      }
+
       function iniciarEscaner() {
         Quagga.init({
           inputStream: {
@@ -686,11 +715,11 @@
             type: "LiveStream",
             target: document.querySelector('#scanner'),
             constraints: {
-              facingMode: "environment" // usa cámara trasera si está disponible
+              facingMode: "environment"
             }
           },
           decoder: {
-            readers: ["ean_reader", "code_128_reader"] // EAN y otros tipos comunes
+            readers: ["ean_reader", "code_128_reader"]
           }
         }, function(err) {
           if (err) {
@@ -702,8 +731,7 @@
 
         Quagga.onDetected(function(result) {
           const code = result.codeResult.code;
-          document.getElementById('codigoDetectado').value = code;
-          // Opcional: detener automáticamente luego de leer un código
+          document.getElementById("codigoDetectado").value = code;
           detenerEscaner();
         });
       }
