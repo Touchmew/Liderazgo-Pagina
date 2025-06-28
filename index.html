@@ -388,6 +388,16 @@
         html {
             scroll-behavior: smooth;
         }
+        .carousel-caption {
+          background-color: rgba(0, 0, 0, 0.5); /* fondo oscuro semitransparente */
+          border-radius: 10px;
+          padding: 10px;
+        }
+        .carousel-caption h5,
+        .carousel-caption p {
+          color: white !important;
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* sombra para mejor legibilidad */
+        }
     </style>
 </head>
 <body>
@@ -415,39 +425,82 @@
     <main class="main-content">
         <div class="container">
             <!-- Carousel Section -->
-            <div id="carouselExample" class="carousel slide" data-bs-ride="false">
+            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                  <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="6" aria-label="Slide 7"></button>
+                  </div>
                   <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <img src="img/im1.jpg" class="d-block w-100" style="height: 700px; object-fit: cover;" alt="tacho de basura clasificada">
+                    <div class="carousel-item active" data-bs-interval="4000">
+                      <img src="img/im1.jpg" class="d-block w-100" alt="Tacho reciclaje 1">
+                      <div class="carousel-caption d-none d-md-block">
+                        <h5>Separación de residuos</h5>
+                        <p>Piso 5 bloque B</p>
+                        <p>Clasifica correctamente los residuos: orgánicos, plásticos, papel, metales y vidrio.</p>
+                      </div>
                     </div>
-                    <div class="carousel-item">
-                      <img src="img/im2.jpg" class="d-block w-100" style="height: 700px object-fit: cover;" alt="tacho de basura clasificada">
+                    <div class="carousel-item" data-bs-interval="4000">
+                      <img src="img/im2.jpg" class="d-block w-100" alt="Tacho reciclaje 2">
+                      <div class="carousel-caption d-none d-md-block">
+                        <h5>Contenedores diferenciados</h5>
+                        <p>Piso 7 bloque B</p>
+                        <p>Ubicados estratégicamente en la universidad para facilitar el reciclaje.</p>
+                      </div>
                     </div>
-                    <div class="carousel-item">
-                      <img src="img/im3.jpg" class="d-block w-100" style="height: 700px; object-fit: cover;" alt="tacho de basura clasificada">
+                    <div class="carousel-item" data-bs-interval="4000">
+                      <img src="img/im3.jpg" class="d-block w-100" alt="Tacho reciclaje 3">
+                      <div class="carousel-caption d-none d-md-block">
+                        <h5>Guía visual</h5>
+                        <p>Piso 5 bloque A</p>
+                        <p>Aprende a identificar cada tipo de residuo con los colores adecuados.</p>
+                      </div>
                     </div>
-                    <div class="carousel-item">
-                      <img src="img/im4.jpg" class="d-block w-100" style="height: 700px; object-fit: cover;" alt="tacho de basura clasificada">
+                    <div class="carousel-item" data-bs-interval="4000">
+                      <img src="img/im4.jpg" class="d-block w-100" alt="Tacho reciclaje 4">
+                      <div class="carousel-caption d-none d-md-block">
+                        <h5>Educación ambiental</h5>
+                        <p>Piso 2 bloque A</p>
+                        <p>Promovemos una cultura ecológica desde la comunidad estudiantil.</p>
+                      </div>
                     </div>
-                    <div class="carousel-item">
-                      <img src="img/im5.jpg" class="d-block w-100" style="height: 700px; object-fit: cover;" alt="tacho de basura clasificada">
+                    <div class="carousel-item" data-bs-interval="4000">
+                      <img src="img/im5.jpg" class="d-block w-100" alt="Tacho reciclaje 5">
+                      <div class="carousel-caption d-none d-md-block">
+                        <h5>Impacto positivo</h5>
+                        <p>Piso 4 bloque A</p>
+                        <p>El reciclaje reduce la contaminación y mejora la salud del planeta.</p>
+                      </div>
                     </div>
-                    <div class="carousel-item">
-                      <img src="img/im6.jpg" class="d-block w-100" style="height: 700px; object-fit: cover;" alt="tacho de basura clasificada">
+                    <div class="carousel-item" data-bs-interval="4000">
+                      <img src="img/im6.jpg" class="d-block w-100" alt="Tacho reciclaje 6">
+                      <div class="carousel-caption d-none d-md-block">
+                        <h5>Participación estudiantil</h5>
+                        <p>Cada acción cuenta: participa en campañas de reciclaje universitario.</p>
+                      </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="4000">
+                      <img src="img/img7.jpg" class="d-block w-100" alt="Tacho reciclaje 7">
+                      <div class="carousel-caption d-none d-md-block">
+                        <h5>EcoRuta en acción</h5>
+                        <p>Piso 1 bloque A</p>
+                        <p>Tu compromiso ambiental transforma el campus y el entorno.</p>
+                      </div>
                     </div>
                   </div>
-
-                  <!-- Botones de navegación -->
-                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Anterior</span>
                   </button>
-                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Siguiente</span>
                   </button>
                 </div>
-
 
                 <div class="collection-points">
                     <div class="point-item">
