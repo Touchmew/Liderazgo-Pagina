@@ -136,9 +136,10 @@
         }
 
         .carousel-item img {
-          height: 700px;
-          object-fit: cover;
-        }
+            width: 100%;
+            height: 700px;
+            object-fit: cover;
+          }
 
         /* Info Cards */
         .info-grid {
@@ -383,7 +384,25 @@
             .stat-number {
                 font-size: 1.5rem;
             }
+            .carousel-item img {
+              height: 250px;
+              object-fit: contain;
+            }
+            .carousel-caption {
+                font-size: 0.85rem;
+                bottom: 10px;
+                padding: 5px;
+              }
+
+              .carousel-caption h5 {
+                font-size: 1rem;
+              }
+
+              .carousel-caption p {
+                font-size: 0.8rem;
+              }
         }
+
 
         /* Smooth scroll */
         html {
@@ -398,6 +417,18 @@
         .carousel-caption p {
           color: white !important;
           text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* sombra para mejor legibilidad */
+        }
+        .carousel-caption {
+          background-color: rgba(0, 0, 0, 0.5);
+          padding: 10px;
+          border-radius: 10px;
+        }
+
+        .carousel-caption h5,
+        .carousel-caption p {
+          color: white;
+          text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+          margin-bottom: 5px;
         }
         .scanner-box {
           width: 100%;
@@ -437,7 +468,7 @@
                 </ul>
             </nav>
         </div>
-        <div class="d-flex justify-content-start fw-bold" style="color: gold;">
+            <div class="d-flex justify-content-start fw-bold" style="color: gold;">
               🪙 Monedas: <span id="monedas" class="ms-2">0</span>
             </div>
 
@@ -460,7 +491,7 @@
                   <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="4000">
                       <img src="img/im1.jpg" class="d-block w-100" alt="Tacho reciclaje 1">
-                      <div class="carousel-caption d-none d-md-block">
+                      <div class="carousel-caption d-block">
                         <h5>Separación de residuos</h5>
                         <p>Piso 5 bloque B</p>
                         <p>Clasifica correctamente los residuos: orgánicos, plásticos, papel, metales y vidrio.</p>
@@ -468,7 +499,7 @@
                     </div>
                     <div class="carousel-item" data-bs-interval="4000">
                       <img src="img/im2.jpg" class="d-block w-100" alt="Tacho reciclaje 2">
-                      <div class="carousel-caption d-none d-md-block">
+                      <div class="carousel-caption d-block">
                         <h5>Contenedores diferenciados</h5>
                         <p>Piso 7 bloque B</p>
                         <p>Ubicados estratégicamente en la universidad para facilitar el reciclaje.</p>
@@ -476,7 +507,7 @@
                     </div>
                     <div class="carousel-item" data-bs-interval="4000">
                       <img src="img/im3.jpg" class="d-block w-100" alt="Tacho reciclaje 3">
-                      <div class="carousel-caption d-none d-md-block">
+                      <div class="carousel-caption d-block">
                         <h5>Guía visual</h5>
                         <p>Piso 5 bloque A</p>
                         <p>Aprende a identificar cada tipo de residuo con los colores adecuados.</p>
@@ -484,7 +515,7 @@
                     </div>
                     <div class="carousel-item" data-bs-interval="4000">
                       <img src="img/im4.jpg" class="d-block w-100" alt="Tacho reciclaje 4">
-                      <div class="carousel-caption d-none d-md-block">
+                      <div class="carousel-caption d-block">
                         <h5>Educación ambiental</h5>
                         <p>Piso 2 bloque A</p>
                         <p>Promovemos una cultura ecológica desde la comunidad estudiantil.</p>
@@ -492,7 +523,7 @@
                     </div>
                     <div class="carousel-item" data-bs-interval="4000">
                       <img src="img/im5.jpg" class="d-block w-100" alt="Tacho reciclaje 5">
-                      <div class="carousel-caption d-none d-md-block">
+                      <div class="carousel-caption d-block">
                         <h5>Impacto positivo</h5>
                         <p>Piso 4 bloque A</p>
                         <p>El reciclaje reduce la contaminación y mejora la salud del planeta.</p>
@@ -500,14 +531,14 @@
                     </div>
                     <div class="carousel-item" data-bs-interval="4000">
                       <img src="img/im6.jpg" class="d-block w-100" alt="Tacho reciclaje 6">
-                      <div class="carousel-caption d-none d-md-block">
+                      <div class="carousel-caption d-block">
                         <h5>Participación estudiantil</h5>
                         <p>Cada acción cuenta: participa en campañas de reciclaje universitario.</p>
                       </div>
                     </div>
                     <div class="carousel-item" data-bs-interval="4000">
                       <img src="img/img7.jpg" class="d-block w-100" alt="Tacho reciclaje 7">
-                      <div class="carousel-caption d-none d-md-block">
+                      <div class="carousel-caption d-block">
                         <h5>EcoRuta en acción</h5>
                         <p>Piso 1 bloque A</p>
                         <p>Tu compromiso ambiental transforma el campus y el entorno.</p>
