@@ -6,6 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@ericblade/quagga2/dist/quagga.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>EcoRuta - Universidad Continental</title>
     <style>
         * {
@@ -22,7 +23,7 @@
         }
 
         .container {
-            max-width: 100%;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
         }
@@ -41,12 +42,29 @@
         .header-content {
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
         }
 
         .logo {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: bold;
             margin-bottom: 5px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
@@ -54,9 +72,21 @@
         }
 
         .subtitle {
-            font-size: 1rem;
+            font-size: 0.9rem;
             opacity: 0.9;
             animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .coin-display {
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid gold;
+            border-radius: 20px;
+            padding: 8px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            color: gold;
         }
 
         /* Navigation */
@@ -64,33 +94,37 @@
             background: rgba(255,255,255,0.1);
             backdrop-filter: blur(10px);
             padding: 15px 0;
-            margin-top: 10px;
+            margin-top: 15px;
+            width: 100%;
         }
 
         .nav-links {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             list-style: none;
             flex-wrap: wrap;
+            gap: 10px;
         }
 
         .nav-links li {
-            margin: 5px;
+            margin: 0;
         }
 
         .nav-links a {
             color: white;
             text-decoration: none;
-            padding: 8px 16px;
+            padding: 8px 20px;
             border-radius: 25px;
             transition: all 0.3s ease;
             font-size: 0.9rem;
             display: block;
+            border: 1px solid rgba(255,255,255,0.3);
         }
 
         .nav-links a:hover {
             background: rgba(255,255,255,0.2);
             transform: translateY(-2px);
+            border-color: rgba(255,255,255,0.5);
         }
 
         /* Main Content */
@@ -98,15 +132,16 @@
             background: white;
             margin-top: -20px;
             border-radius: 20px 20px 0 0;
-            padding: 30px 20px;
+            padding: 40px 20px;
             min-height: 100vh;
             position: relative;
             z-index: 1;
+            box-shadow: 0 -5px 30px rgba(0,0,0,0.1);
         }
 
         /* Section Styling */
         .section {
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 0.8s ease-out forwards;
@@ -117,11 +152,14 @@
         .section:nth-child(4) { animation-delay: 0.6s; }
 
         .section-title {
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: #1e3c72;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             position: relative;
             padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .section-title::after {
@@ -129,29 +167,40 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 50px;
-            height: 3px;
+            width: 70px;
+            height: 4px;
             background: linear-gradient(90deg, #f39c12, #e67e22);
             border-radius: 2px;
         }
 
         .carousel-item img {
             width: 100%;
-            height: 700px;
+            height: 500px;
             object-fit: cover;
-          }
+            border-radius: 10px;
+        }
+
+        .carousel-control-prev, .carousel-control-next {
+            width: 5%;
+        }
 
         /* Info Cards */
         .info-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 20px;
-            margin-bottom: 30px;
+            gap: 25px;
+            margin-bottom: 40px;
         }
 
         @media (min-width: 768px) {
             .info-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 992px) {
+            .info-grid {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
 
@@ -164,6 +213,16 @@
             transform: translateY(0);
             transition: all 0.3s ease;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+        }
+
+        .info-card i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #f39c12;
         }
 
         .info-card:hover {
@@ -172,7 +231,7 @@
         }
 
         .info-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-bottom: 15px;
             color: #f39c12;
         }
@@ -190,29 +249,40 @@
             padding: 30px;
             border-radius: 15px;
             margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 25px;
             text-align: center;
         }
 
         .stat-item {
-            padding: 20px;
+            padding: 25px 15px;
             background: rgba(255,255,255,0.1);
             border-radius: 10px;
             backdrop-filter: blur(10px);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .stat-item:hover {
             transform: scale(1.05);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .stat-item i {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #f39c12;
         }
 
         .stat-number {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: bold;
             color: #f39c12;
             display: block;
@@ -220,83 +290,108 @@
         }
 
         .stat-label {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             opacity: 0.9;
         }
 
         /* Recycling Guide */
         .recycling-guide {
             background: #f8f9fa;
-            padding: 25px;
+            padding: 30px;
             border-radius: 15px;
             margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         .recycling-items {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
             margin-top: 20px;
         }
 
         .recycling-item {
             background: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: 10px;
-            border-left: 4px solid #f39c12;
+            border-left: 5px solid #f39c12;
             box-shadow: 0 3px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .recycling-item i {
+            font-size: 1.5rem;
+            color: #1e3c72;
         }
 
         .recycling-item:hover {
-            transform: translateX(5px);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
 
         .recycling-item h4 {
             color: #1e3c72;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .recycling-item p {
             color: #666;
-            font-size: 0.9rem;
-            line-height: 1.5;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         /* Collection Points */
         .collection-points {
             background: #f8f9fa;
-            padding: 25px;
+            padding: 30px;
             border-radius: 15px;
             margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         .point-item {
             background: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: 10px;
-            margin-bottom: 15px;
-            border-left: 4px solid #27ae60;
+            margin-bottom: 20px;
+            border-left: 5px solid #27ae60;
             box-shadow: 0 3px 15px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .point-item i {
+            font-size: 1.2rem;
+            color: #1e3c72;
         }
 
         .point-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
 
         .point-item h4 {
             color: #1e3c72;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .point-item p {
             color: #666;
-            font-size: 0.9rem;
-            line-height: 1.5;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         /* Footer */
@@ -304,19 +399,168 @@
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
             text-align: center;
-            padding: 30px 20px;
+            padding: 40px 20px;
             margin-top: 50px;
         }
 
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
         .footer h3 {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: #f39c12;
+            font-size: 1.8rem;
         }
 
         .footer p {
             opacity: 0.9;
-            font-size: 0.9rem;
+            font-size: 1rem;
             line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #f39c12;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Rewards Section */
+        .reward-card {
+            background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(241, 39, 17, 0.2);
+        }
+
+        .reward-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .reward-card p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .reward-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .reward-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .reward-step i {
+            font-size: 1.2rem;
+            color: white;
+            background: rgba(255,255,255,0.2);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .reward-step-content h4 {
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .reward-step-content p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .scanner-container {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .scanner-box {
+            width: 100%;
+            max-width: 100%;
+            height: 200px;
+            border: 2px dashed #888;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            margin: 20px auto;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+
+        .scanner-box.active {
+            border-color: #27ae60;
+        }
+
+        .scanner-instructions {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn i {
+            font-size: 1rem;
         }
 
         /* Animations */
@@ -342,110 +586,214 @@
             }
         }
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
         }
 
         /* Responsive Design */
+        @media (max-width: 992px) {
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .carousel-item img {
+                height: 400px;
+            }
+        }
+
         @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
             .logo {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             
             .nav-links {
-                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
             }
             
             .nav-links a {
-                font-size: 0.8rem;
-                padding: 6px 12px;
+                width: 100%;
+                text-align: center;
             }
             
             .section-title {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
             
-            .carousel-item {
-                height: 200px;
-                font-size: 1rem;
+            .carousel-item img {
+                height: 300px;
             }
             
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .stat-number {
-                font-size: 1.5rem;
+            .recycling-items {
+                grid-template-columns: 1fr;
             }
-            .carousel-item img {
-              height: 250px;
-              object-fit: contain;
+            
+            .info-grid {
+                grid-template-columns: 1fr;
             }
-            .carousel-caption {
-                font-size: 0.85rem;
-                bottom: 10px;
-                padding: 5px;
-              }
-
-              .carousel-caption h5 {
-                font-size: 1rem;
-              }
-
-              .carousel-caption p {
-                font-size: 0.8rem;
-              }
+            
+            .scanner-box {
+                height: 150px;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
         }
 
+        @media (max-width: 576px) {
+            .carousel-item img {
+                height: 250px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+            }
+            
+            .reward-card {
+                padding: 20px;
+            }
+        }
 
         /* Smooth scroll */
         html {
             scroll-behavior: smooth;
         }
+        
         .carousel-caption {
-          background-color: rgba(0, 0, 0, 0.5); /* fondo oscuro semitransparente */
-          border-radius: 10px;
-          padding: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 15px;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 800px;
         }
-        .carousel-caption h5,
+        
+        .carousel-caption h5 {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
         .carousel-caption p {
-          color: white !important;
-          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* sombra para mejor legibilidad */
+            font-size: 1rem;
+            margin-bottom: 5px;
         }
-        .carousel-caption {
-          background-color: rgba(0, 0, 0, 0.5);
-          padding: 10px;
-          border-radius: 10px;
+        
+        .carousel-indicators button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
         }
-
-        .carousel-caption h5,
-        .carousel-caption p {
-          color: white;
-          text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-          margin-bottom: 5px;
+        
+        /* Form styles */
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
         }
-        .scanner-box {
-          width: 100%;
-          max-width: 100%;
-          height: 150px;
-          border: 2px dashed #888;
-          border-radius: 10px;
-          overflow: hidden;
-          position: relative;
+        
+        .form-control {
+            border-radius: 8px;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease;
         }
-
-        /* En pantallas más grandes (como escritorio), ampliamos un poco */
-        @media (min-width: 768px) {
-          .scanner-box {
-            width: 320px;
-            height: 200px;
-          }
+        
+        .form-control:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.25);
+        }
+        
+        /* Alert styles */
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .alert-success {
+            background-color: rgba(40, 167, 69, 0.2);
+            border: 1px solid rgba(40, 167, 69, 0.3);
+            color: #28a745;
+        }
+        
+        .alert-danger {
+            background-color: rgba(220, 53, 69, 0.2);
+            border: 1px solid rgba(220, 53, 69, 0.3);
+            color: #dc3545;
+        }
+        
+        /* Progress bar */
+        .progress {
+            height: 10px;
+            border-radius: 5px;
+            background-color: #e9ecef;
+            margin-bottom: 20px;
+        }
+        
+        .progress-bar {
+            background-color: #f39c12;
+            border-radius: 5px;
+            transition: width 0.6s ease;
+        }
+        
+        /* Badges */
+        .badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .badge-primary {
+            background-color: #667eea;
+            color: white;
+        }
+        
+        .badge-success {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .badge-warning {
+            background-color: #ffc107;
+            color: #212529;
         }
     </style>
 </head>
@@ -454,32 +802,35 @@
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <div>
-                    <h1 class="logo">EcoRuta</h1>
-                    <p class="subtitle">Universidad Continental - Guía de Reciclaje</p>
+                <div class="logo-container">
+                    <img src="https://via.placeholder.com/50x50" alt="Logo EcoRuta" class="logo-img">
+                    <div class="logo-text">
+                        <h1 class="logo">EcoRuta</h1>
+                        <p class="subtitle">Universidad Continental - Guía de Reciclaje</p>
+                    </div>
+                </div>
+                <div class="coin-display">
+                    <i class="fas fa-coins"></i>
+                    <span>Monedas: <span id="monedas">0</span></span>
                 </div>
             </div>
             <nav class="nav">
                 <ul class="nav-links">
-                    <li><a href="#puntos">Puntos de Recolección</a></li>
-                    <li><a href="#como-reciclar">Cómo Reciclar</a></li>
-                    <li><a href="#estadisticas">Estadísticas</a></li>
-                    <li><a href="#consejos">Consejos</a></li>
+                    <li><a href="#puntos"><i class="fas fa-map-marker-alt"></i> Puntos de Recolección</a></li>
+                    <li><a href="#como-reciclar"><i class="fas fa-recycle"></i> Cómo Reciclar</a></li>
+                    <li><a href="#estadisticas"><i class="fas fa-chart-bar"></i> Estadísticas</a></li>
+                    <li><a href="#recompensas"><i class="fas fa-gift"></i> Recompensas</a></li>
                 </ul>
             </nav>
         </div>
-            <div class="d-flex justify-content-start fw-bold" style="color: gold;">
-              🪙 Monedas: <span id="monedas" class="ms-2">0</span>
-            </div>
-
     </header>
 
     <!-- Main Content -->
     <main class="main-content">
         <div class="container">
             <!-- Carousel Section -->
-            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                  <div class="carousel-indicators">
+            <div id="carouselExampleDark" class="carousel carousel-dark slide mb-5" data-bs-ride="carousel">
+                <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
                     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
@@ -487,126 +838,167 @@
                     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="4" aria-label="Slide 5"></button>
                     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="5" aria-label="Slide 6"></button>
                     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="6" aria-label="Slide 7"></button>
-                  </div>
-                  <div class="carousel-inner">
+                </div>
+                <div class="carousel-inner rounded-3 overflow-hidden">
                     <div class="carousel-item active" data-bs-interval="4000">
-                      <img src="img/im1.jpg" class="d-block w-100" alt="Tacho reciclaje 1">
-                      <div class="carousel-caption d-block">
-                        <h5>Separación de residuos</h5>
-                        <p>Piso 5 bloque B</p>
-                        <p>Clasifica correctamente los residuos: orgánicos, plásticos, papel, metales y vidrio.</p>
-                      </div>
+                        <img src="img/im1.jpg" class="d-block w-100" alt="Tacho reciclaje 1">
+                        <div class="carousel-caption d-block">
+                            <h5><i class="fas fa-trash-alt"></i> Separación de residuos</h5>
+                            <p><strong>Piso 5 bloque B</strong></p>
+                            <p>Clasifica correctamente los residuos: orgánicos, plásticos, papel, metales y vidrio.</p>
+                        </div>
                     </div>
                     <div class="carousel-item" data-bs-interval="4000">
-                      <img src="img/im2.jpg" class="d-block w-100" alt="Tacho reciclaje 2">
-                      <div class="carousel-caption d-block">
-                        <h5>Contenedores diferenciados</h5>
-                        <p>Piso 7 bloque B</p>
-                        <p>Ubicados estratégicamente en la universidad para facilitar el reciclaje.</p>
-                      </div>
+                        <img src="img/im2.jpg" class="d-block w-100" alt="Tacho reciclaje 2">
+                        <div class="carousel-caption d-block">
+                            <h5><i class="fas fa-trash-restore"></i> Contenedores diferenciados</h5>
+                            <p><strong>Piso 7 bloque B</strong></p>
+                            <p>Ubicados estratégicamente en la universidad para facilitar el reciclaje.</p>
+                        </div>
                     </div>
                     <div class="carousel-item" data-bs-interval="4000">
-                      <img src="img/im3.jpg" class="d-block w-100" alt="Tacho reciclaje 3">
-                      <div class="carousel-caption d-block">
-                        <h5>Guía visual</h5>
-                        <p>Piso 5 bloque A</p>
-                        <p>Aprende a identificar cada tipo de residuo con los colores adecuados.</p>
-                      </div>
+                        <img src="img/im3.jpg" class="d-block w-100" alt="Tacho reciclaje 3">
+                        <div class="carousel-caption d-block">
+                            <h5><i class="fas fa-eye"></i> Guía visual</h5>
+                            <p><strong>Piso 5 bloque A</strong></p>
+                            <p>Aprende a identificar cada tipo de residuo con los colores adecuados.</p>
+                        </div>
                     </div>
                     <div class="carousel-item" data-bs-interval="4000">
-                      <img src="img/im4.jpg" class="d-block w-100" alt="Tacho reciclaje 4">
-                      <div class="carousel-caption d-block">
-                        <h5>Educación ambiental</h5>
-                        <p>Piso 2 bloque A</p>
-                        <p>Promovemos una cultura ecológica desde la comunidad estudiantil.</p>
-                      </div>
+                        <img src="img/im4.jpg" class="d-block w-100" alt="Tacho reciclaje 4">
+                        <div class="carousel-caption d-block">
+                            <h5><i class="fas fa-graduation-cap"></i> Educación ambiental</h5>
+                            <p><strong>Piso 2 bloque A</strong></p>
+                            <p>Promovemos una cultura ecológica desde la comunidad estudiantil.</p>
+                        </div>
                     </div>
                     <div class="carousel-item" data-bs-interval="4000">
-                      <img src="img/im5.jpg" class="d-block w-100" alt="Tacho reciclaje 5">
-                      <div class="carousel-caption d-block">
-                        <h5>Impacto positivo</h5>
-                        <p>Piso 4 bloque A</p>
-                        <p>El reciclaje reduce la contaminación y mejora la salud del planeta.</p>
-                      </div>
+                        <img src="img/im5.jpg" class="d-block w-100" alt="Tacho reciclaje 5">
+                        <div class="carousel-caption d-block">
+                            <h5><i class="fas fa-globe-americas"></i> Impacto positivo</h5>
+                            <p><strong>Piso 4 bloque A</strong></p>
+                            <p>El reciclaje reduce la contaminación y mejora la salud del planeta.</p>
+                        </div>
                     </div>
                     <div class="carousel-item" data-bs-interval="4000">
-                      <img src="img/im6.jpg" class="d-block w-100" alt="Tacho reciclaje 6">
-                      <div class="carousel-caption d-block">
-                        <h5>Participación estudiantil</h5>
-                        <p>Cada acción cuenta: participa en campañas de reciclaje universitario.</p>
-                      </div>
+                        <img src="img/im6.jpg" class="d-block w-100" alt="Tacho reciclaje 6">
+                        <div class="carousel-caption d-block">
+                            <h5><i class="fas fa-users"></i> Participación estudiantil</h5>
+                            <p>Cada acción cuenta: participa en campañas de reciclaje universitario.</p>
+                        </div>
                     </div>
                     <div class="carousel-item" data-bs-interval="4000">
-                      <img src="img/img7.jpg" class="d-block w-100" alt="Tacho reciclaje 7">
-                      <div class="carousel-caption d-block">
-                        <h5>EcoRuta en acción</h5>
-                        <p>Piso 1 bloque A</p>
-                        <p>Tu compromiso ambiental transforma el campus y el entorno.</p>
-                      </div>
+                        <img src="img/img7.jpg" class="d-block w-100" alt="Tacho reciclaje 7">
+                        <div class="carousel-caption d-block">
+                            <h5><i class="fas fa-leaf"></i> EcoRuta en acción</h5>
+                            <p><strong>Piso 1 bloque A</strong></p>
+                            <p>Tu compromiso ambiental transforma el campus y el entorno.</p>
+                        </div>
                     </div>
-                  </div>
-                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Anterior</span>
-                  </button>
-                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Siguiente</span>
-                  </button>
-                </div>
+                </button>
+            </div>
 
+            <!-- Collection Points -->
+            <section class="section" id="puntos">
+                <h2 class="section-title"><i class="fas fa-map-marked-alt"></i> Puntos de Recolección</h2>
                 <div class="collection-points">
                     <div class="point-item">
-                        <h4>📍 Biblioteca Central</h4>
+                        <h4><i class="fas fa-book"></i> Biblioteca Central</h4>
                         <p>Ubicado en el primer piso, junto a la recepción. Ideal para papel, cartón y materiales de oficina.</p>
+                        <div class="mt-2">
+                            <span class="badge badge-primary"><i class="fas fa-clock"></i> 7:00 AM - 9:00 PM</span>
+                            <span class="badge badge-success"><i class="fas fa-check-circle"></i> Disponible</span>
+                        </div>
                     </div>
                     <div class="point-item">
-                        <h4>📍 Cafetería Principal</h4>
+                        <h4><i class="fas fa-utensils"></i> Cafetería Principal</h4>
                         <p>Contenedores especiales para residuos orgánicos, plásticos y vidrio. Horario: 7:00 AM - 8:00 PM</p>
+                        <div class="mt-2">
+                            <span class="badge badge-primary"><i class="fas fa-clock"></i> 7:00 AM - 8:00 PM</span>
+                            <span class="badge badge-success"><i class="fas fa-check-circle"></i> Disponible</span>
+                        </div>
                     </div>
                     <div class="point-item">
-                        <h4>📍 Laboratorios de Ciencias</h4>
+                        <h4><i class="fas fa-flask"></i> Laboratorios de Ciencias</h4>
                         <p>Punto especializado para materiales de laboratorio y residuos químicos. Supervisión especializada.</p>
+                        <div class="mt-2">
+                            <span class="badge badge-primary"><i class="fas fa-clock"></i> 8:00 AM - 6:00 PM</span>
+                            <span class="badge badge-warning"><i class="fas fa-exclamation-circle"></i> Supervisión requerida</span>
+                        </div>
                     </div>
                     <div class="point-item">
-                        <h4>📍 Patio Central</h4>
+                        <h4><i class="fas fa-tree"></i> Patio Central</h4>
                         <p>Estación principal de reciclaje con contenedores diferenciados por colores y tipos de residuos.</p>
+                        <div class="mt-2">
+                            <span class="badge badge-primary"><i class="fas fa-clock"></i> 6:00 AM - 10:00 PM</span>
+                            <span class="badge badge-success"><i class="fas fa-check-circle"></i> Disponible</span>
+                        </div>
                     </div>
                     <div class="point-item">
-                        <h4>📍 Estacionamiento</h4>
+                        <h4><i class="fas fa-parking"></i> Estacionamiento</h4>
                         <p>Punto de recolección para residuos grandes y electrónicos. Disponible los fines de semana.</p>
+                        <div class="mt-2">
+                            <span class="badge badge-primary"><i class="fas fa-clock"></i> Sáb-Dom: 9:00 AM - 5:00 PM</span>
+                            <span class="badge badge-success"><i class="fas fa-check-circle"></i> Disponible</span>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <!-- Recycling Guide -->
             <section class="section" id="como-reciclar">
-                <h2 class="section-title">Cómo Reciclar Correctamente</h2>
+                <h2 class="section-title"><i class="fas fa-recycle"></i> Cómo Reciclar Correctamente</h2>
                 <div class="recycling-guide">
                     <div class="recycling-items">
                         <div class="recycling-item">
-                            <h4>🗞️ Papel y Cartón</h4>
+                            <h4><i class="fas fa-newspaper"></i> Papel y Cartón</h4>
                             <p>Limpio y seco. Evita papel con cinta adhesiva, grapas o contaminado con alimentos. Dobla las cajas de cartón.</p>
+                            <div class="progress mt-2">
+                                <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85% reciclable</div>
+                            </div>
                         </div>
                         <div class="recycling-item">
-                            <h4>♻️ Plásticos</h4>
+                            <h4><i class="fas fa-recycle"></i> Plásticos</h4>
                             <p>Revisa los números de reciclaje (1-7). Lava los contenedores antes de depositarlos. Quita etiquetas cuando sea posible.</p>
+                            <div class="progress mt-2">
+                                <div class="progress-bar" role="progressbar" style="width: 45%;" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">45% reciclable</div>
+                            </div>
                         </div>
                         <div class="recycling-item">
-                            <h4>🍃 Residuos Orgánicos</h4>
+                            <h4><i class="fas fa-leaf"></i> Residuos Orgánicos</h4>
                             <p>Restos de comida, cáscaras y materiales biodegradables. Evita huesos, aceites y lácteos en exceso.</p>
+                            <div class="progress mt-2">
+                                <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100% compostable</div>
+                            </div>
                         </div>
                         <div class="recycling-item">
-                            <h4>🔋 Electrónicos</h4>
+                            <h4><i class="fas fa-battery-full"></i> Electrónicos</h4>
                             <p>Baterías, celulares, computadoras. Nunca los mezcles con basura común. Lleva a puntos especializados.</p>
+                            <div class="progress mt-2">
+                                <div class="progress-bar" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">30% reciclable</div>
+                            </div>
                         </div>
                         <div class="recycling-item">
-                            <h4>🍶 Vidrio</h4>
+                            <h4><i class="fas fa-wine-bottle"></i> Vidrio</h4>
                             <p>Botellas y frascos limpios. Separa por colores si es posible. Evita vidrio roto sin protección.</p>
+                            <div class="progress mt-2">
+                                <div class="progress-bar" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">95% reciclable</div>
+                            </div>
                         </div>
                         <div class="recycling-item">
-                            <h4>🥫 Metales</h4>
+                            <h4><i class="fas fa-wine-bottle-alt"></i> Metales</h4>
                             <p>Latas de aluminio y acero. Limpia los residuos de comida. Aplasta las latas para ahorrar espacio.</p>
+                            <div class="progress mt-2">
+                                <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75% reciclable</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -614,22 +1006,26 @@
 
             <!-- Statistics -->
             <section class="section" id="estadisticas">
-                <h2 class="section-title">Estadísticas Importantes</h2>
+                <h2 class="section-title"><i class="fas fa-chart-pie"></i> Estadísticas Importantes</h2>
                 <div class="stats-container">
                     <div class="stats-grid">
                         <div class="stat-item">
+                            <i class="fas fa-weight-hanging"></i>
                             <span class="stat-number">2.5</span>
                             <span class="stat-label">Toneladas recicladas mensualmente</span>
                         </div>
                         <div class="stat-item">
+                            <i class="fas fa-users"></i>
                             <span class="stat-number">85%</span>
                             <span class="stat-label">Participación estudiantil</span>
                         </div>
                         <div class="stat-item">
+                            <i class="fas fa-map-marker-alt"></i>
                             <span class="stat-number">15</span>
                             <span class="stat-label">Puntos de recolección activos</span>
                         </div>
                         <div class="stat-item">
+                            <i class="fas fa-trash-alt"></i>
                             <span class="stat-number">40%</span>
                             <span class="stat-label">Reducción de residuos</span>
                         </div>
@@ -638,162 +1034,238 @@
 
                 <div class="info-grid">
                     <div class="info-card">
-                        <h3>🌍 Impacto Global</h3>
+                        <i class="fas fa-globe-americas"></i>
+                        <h3>Impacto Global</h3>
                         <p>Cada persona genera aproximadamente 1.4 kg de residuos diarios. En Perú, solo el 1.9% de residuos sólidos se recicla efectivamente.</p>
                     </div>
                     <div class="info-card">
-                        <h3>💧 Ahorro de Agua</h3>
+                        <i class="fas fa-tint"></i>
+                        <h3>Ahorro de Agua</h3>
                         <p>Reciclar una tonelada de papel ahorra 26,000 litros de agua y evita la tala de 17 árboles adultos.</p>
                     </div>
                     <div class="info-card">
-                        <h3>⚡ Energía</h3>
+                        <i class="fas fa-bolt"></i>
+                        <h3>Energía</h3>
                         <p>Reciclar aluminio ahorra hasta 95% de la energía necesaria para producir aluminio nuevo desde materias primas.</p>
                     </div>
                     <div class="info-card">
-                        <h3>🏭 Emisiones</h3>
+                        <i class="fas fa-smog"></i>
+                        <h3>Emisiones</h3>
                         <p>El reciclaje reduce las emisiones de CO2 en un 70% comparado con la producción de materiales nuevos.</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Tips Section -->
-            <section class="section" id="consejos">
-                <h2 class="section-title">Consejos Prácticos</h2>
-                <div class="recycling-guide">
-                    <div class="recycling-items">
-                        <div class="recycling-item">
-                            <h4>🎯 Regla de las 3 R</h4>
-                            <p><strong>Reducir:</strong> Consume menos. <strong>Reutilizar:</strong> Dale nueva vida a los objetos. <strong>Reciclar:</strong> Procesa correctamente los residuos.</p>
+            <!-- Rewards Section -->
+            <section class="section" id="recompensas">
+                <h2 class="section-title"><i class="fas fa-gift"></i> Sistema de Recompensas</h2>
+                
+                <div class="reward-card">
+                    <h3><i class="fas fa-coins"></i> Gana monedas ecológicas</h3>
+                    <p>Por cada acción de reciclaje que registres, ganarás monedas que podrás canjear por beneficios exclusivos en la universidad. ¡Súmate al cambio y sé recompensado!</p>
+                    
+                    <div class="reward-steps">
+                        <div class="reward-step">
+                            <i class="fas fa-1"></i>
+                            <div class="reward-step-content">
+                                <h4>Registra tu acción</h4>
+                                <p>Sube una foto de tu reciclaje o escanea el código de barras del producto</p>
+                            </div>
                         </div>
-                        <div class="recycling-item">
-                            <h4>🧽 Limpieza</h4>
-                            <p>Lava los contenedores antes de reciclar. Un enjuague rápido es suficiente. Los residuos sucios contaminan el proceso.</p>
+                        <div class="reward-step">
+                            <i class="fas fa-2"></i>
+                            <div class="reward-step-content">
+                                <h4>Gana monedas</h4>
+                                <p>Por cada acción válida recibirás entre 5 y 20 monedas ecológicas</p>
+                            </div>
                         </div>
-                        <div class="recycling-item">
-                            <h4>🏷️ Identificación</h4>
-                            <p>Aprende los símbolos de reciclaje. Cada número indica el tipo de plástico y su proceso de reciclaje.</p>
+                        <div class="reward-step">
+                            <i class="fas fa-3"></i>
+                            <div class="reward-step-content">
+                                <h4>Canjea tus premios</h4>
+                                <p>Acumula monedas y redímelas por descuentos, productos y beneficios</p>
+                            </div>
                         </div>
-                        <div class="recycling-item">
-                            <h4>📱 Tecnología</h4>
-                            <p>Usa apps como "Recicla Perú" para encontrar puntos de reciclaje cerca de ti y aprender más sobre el proceso.</p>
-                        </div>
-                        <div class="recycling-item">
-                            <h4>👥 Comunidad</h4>
-                            <p>Involúcrate en campañas de reciclaje. Comparte conocimientos con amigos y familiares para multiplicar el impacto.</p>
-                        </div>
-                        <div class="recycling-item">
-                            <h4>📅 Constancia</h4>
-                            <p>Haz del reciclaje un hábito diario. Pequeñas acciones constantes generan grandes cambios ambientales.</p>
-                        </div>
+                    </div>
+                    
+                    <div class="alert alert-success">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Actualmente tienes <strong><span id="current-coins">0</span> monedas</strong>. ¡Sigue reciclando para ganar más!</span>
+                    </div>
+                </div>
+
+                <div class="scanner-container">
+                    <label class="form-label"><strong><i class="fas fa-camera"></i> Sube una foto del reciclaje:</strong></label>
+                    <input type="file" class="form-control mb-4" id="fotoReciclaje" accept="image/*">
+                    
+                    <label class="form-label"><strong><i class="fas fa-barcode"></i> Escanea código de barras:</strong></label>
+                    <p class="scanner-instructions">Coloca el código de barras del producto dentro del área del escáner</p>
+                    
+                    <div id="scanner" class="scanner-box">
+                        <span>Área del escáner</span>
+                    </div>
+                    
+                    <input type="text" class="form-control mb-3" id="codigoDetectado" placeholder="Código detectado aparecerá aquí" readonly>
+                    
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="iniciarEscaner()">
+                            <i class="fas fa-play"></i> Iniciar escáner
+                        </button>
+                        <button class="btn btn-danger" onclick="detenerEscaner()">
+                            <i class="fas fa-stop"></i> Detener escáner
+                        </button>
+                        <button class="btn btn-success" onclick="registrarAccion()">
+                            <i class="fas fa-check-circle"></i> Registrar acción
+                        </button>
+                    </div>
+                    
+                    <div id="mensajeConfirmacion" class="alert alert-success mt-3" style="display: none;">
+                        <i class="fas fa-check-circle"></i>
+                        <span>¡Acción registrada con éxito! Has ganado <strong>10 monedas</strong> 🎉</span>
                     </div>
                 </div>
             </section>
         </div>
-        <section class="section" id="recompensas">
-          <h2 class="section-title">🎁 Sistema de Recompensas</h2>
-          <div class="recycling-guide">
-
-            <!-- Subir foto -->
-            <div class="mb-3">
-              <label for="fotoReciclaje" class="form-label"><strong>📸 Sube una foto del reciclaje:</strong></label>
-              <input type="file" class="form-control" id="fotoReciclaje" accept="image/*">
-            </div>
-
-            <!-- Escáner -->
-            <div class="mb-3">
-                  <label class="form-label"><strong>🔍 Escanea código de barras:</strong></label>
-                  
-                  <div class="d-flex justify-content-center mb-3">
-                    <div id="scanner" class="scanner-box"></div>
-                  </div>
-
-                  <input type="text" class="form-control mb-2" id="codigoDetectado" placeholder="Código detectado automáticamente" readonly>
-
-                  <div class="d-flex flex-wrap gap-2">
-                    <button class="btn btn-secondary" onclick="iniciarEscaner()">📷 Iniciar escáner</button>
-                    <button class="btn btn-danger" onclick="detenerEscaner()">✖️ Detener escáner</button>
-                    <button class="btn btn-success" onclick="registrarAccion()">✅ Registrar acción ecológica</button>
-                  </div>
-
-                  <div id="mensajeConfirmacion" class="mt-3 text-success fw-bold" style="display: none;">
-                    ¡Acción registrada! Has ganado 10 monedas 🪙
-                  </div>
-            </div>
-
-                <!-- Mensaje de confirmación -->
-                <div id="mensajeConfirmacion" class="mt-3 text-success fw-bold" style="display: none;">
-                  ¡Acción registrada! Has ganado 10 monedas 🪙
-                </div>
-            </div>
     </main>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <h3>EcoRuta Universidad Continental</h3>
+        <div class="footer-content">
+            <h3><i class="fas fa-leaf"></i> EcoRuta Universidad Continental</h3>
             <p>Comprometidos con el medio ambiente y la sostenibilidad.<br>
             Juntos construimos un futuro más verde para las próximas generaciones.</p>
-            <p style="margin-top: 20px; opacity: 0.7; font-size: 0.8rem;">
+            
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            
+            <p class="copyright">
                 © 2025 Universidad Continental - Todos los derechos reservados
             </p>
         </div>
     </footer>
+
     <script>
-      let monedas = 0;
+        let monedas = 0;
+        let escanerActivo = false;
 
-      function actualizarMonedas() {
-        document.getElementById("monedas").innerText = monedas;
-      }
-
-      function registrarAccion() {
-        const tieneFoto = document.getElementById("fotoReciclaje").value;
-        const codigo = document.getElementById("codigoDetectado").value;
-
-        if (tieneFoto || codigo.trim() !== "") {
-          monedas += 10;
-          actualizarMonedas();
-          document.getElementById("mensajeConfirmacion").style.display = "block";
-          setTimeout(() => {
-            document.getElementById("mensajeConfirmacion").style.display = "none";
-            document.getElementById("fotoReciclaje").value = "";
-            document.getElementById("codigoDetectado").value = "";
-          }, 3000);
-        } else {
-          alert("Debes subir una foto o escanear un código para ganar monedas.");
-        }
-      }
-
-      function iniciarEscaner() {
-        Quagga.init({
-          inputStream: {
-            name: "Live",
-            type: "LiveStream",
-            target: document.querySelector('#scanner'),
-            constraints: {
-              facingMode: "environment"
+        // Actualizar monedas al cargar la página (podría cargarse desde localStorage)
+        document.addEventListener('DOMContentLoaded', function() {
+            const monedasGuardadas = localStorage.getItem('ecorutaMonedas');
+            if (monedasGuardadas) {
+                monedas = parseInt(monedasGuardadas);
+                actualizarMonedas();
             }
-          },
-          decoder: {
-            readers: ["ean_reader", "code_128_reader"]
-          }
-        }, function(err) {
-          if (err) {
-            console.error(err);
-            return;
-          }
-          Quagga.start();
         });
 
-        Quagga.onDetected(function(result) {
-          const code = result.codeResult.code;
-          document.getElementById("codigoDetectado").value = code;
-          detenerEscaner();
-        });
-      }
+        function actualizarMonedas() {
+            document.getElementById("monedas").textContent = monedas;
+            document.getElementById("current-coins").textContent = monedas;
+            localStorage.setItem('ecorutaMonedas', monedas);
+        }
 
-      function detenerEscaner() {
-        Quagga.stop();
-      }
+        function registrarAccion() {
+            const tieneFoto = document.getElementById("fotoReciclaje").value;
+            const codigo = document.getElementById("codigoDetectado").value;
+
+            if (tieneFoto || codigo.trim() !== "") {
+                // Animación de monedas
+                const mensaje = document.getElementById("mensajeConfirmacion");
+                mensaje.style.display = "flex";
+                
+                // Agregar monedas con efecto
+                monedas += 10;
+                actualizarMonedas();
+                
+                // Efecto visual
+                document.querySelector(".coin-display").classList.add("pulse");
+                setTimeout(() => {
+                    document.querySelector(".coin-display").classList.remove("pulse");
+                }, 2000);
+                
+                // Resetear formulario después de 3 segundos
+                setTimeout(() => {
+                    mensaje.style.display = "none";
+                    document.getElementById("fotoReciclaje").value = "";
+                    document.getElementById("codigoDetectado").value = "";
+                    if (escanerActivo) detenerEscaner();
+                }, 3000);
+            } else {
+                const alerta = document.createElement('div');
+                alerta.className = 'alert alert-danger';
+                alerta.innerHTML = '<i class="fas fa-exclamation-circle"></i> Debes subir una foto o escanear un código para ganar monedas.';
+                document.querySelector('.scanner-container').appendChild(alerta);
+                
+                setTimeout(() => {
+                    alerta.remove();
+                }, 3000);
+            }
+        }
+
+        function iniciarEscaner() {
+            if (escanerActivo) return;
+            
+            const scannerBox = document.getElementById("scanner");
+            scannerBox.innerHTML = '';
+            scannerBox.classList.add('active');
+            
+            Quagga.init({
+                inputStream: {
+                    name: "Live",
+                    type: "LiveStream",
+                    target: scannerBox,
+                    constraints: {
+                        facingMode: "environment",
+                        width: 320,
+                        height: 200
+                    }
+                },
+                decoder: {
+                    readers: ["ean_reader", "ean_8_reader", "code_128_reader", "upc_reader"],
+                    multiple: false
+                },
+                locate: true
+            }, function(err) {
+                if (err) {
+                    console.error(err);
+                    scannerBox.classList.remove('active');
+                    scannerBox.innerHTML = '<span>Error al iniciar el escáner</span>';
+                    return;
+                }
+                Quagga.start();
+                escanerActivo = true;
+            });
+
+            Quagga.onDetected(function(result) {
+                const code = result.codeResult.code;
+                document.getElementById("codigoDetectado").value = code;
+                detenerEscaner();
+                
+                // Efecto de confirmación
+                const scannerBox = document.getElementById("scanner");
+                scannerBox.innerHTML = '<span style="color: green;"><i class="fas fa-check-circle fa-3x"></i><br>Código detectado</span>';
+            });
+        }
+
+        function detenerEscaner() {
+            if (!escanerActivo) return;
+            
+            Quagga.stop();
+            escanerActivo = false;
+            const scannerBox = document.getElementById("scanner");
+            scannerBox.classList.remove('active');
+            scannerBox.innerHTML = '<span>Área del escáner</span>';
+        }
+
+        // Limpiar al salir de la página
+        window.addEventListener('beforeunload', function() {
+            if (escanerActivo) {
+                Quagga.stop();
+            }
+        });
     </script>
 </body>
 </html>
